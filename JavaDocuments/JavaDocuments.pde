@@ -85,8 +85,9 @@ void keyPressed() {
   if (key == ENTER || key == RETURN) {
     makeNewLine();
     
-    //for (int i = 1; i < numLines; i++) {
-      //line1.setFocus(false);
-    //}
+    for (int i = 1; i < numLines; i++) {
+      ctrl.get(Textfield.class,"line" + str(i)).setFocus(false);
+    }
+    
   }
 }
