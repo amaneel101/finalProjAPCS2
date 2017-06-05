@@ -45,11 +45,14 @@ void setup() {
   
   ctrl.addTextfield("line1")
       .setPosition(10,yPos)
-      //.setSize(760,560)
-      .setHeight(fontSize + 4)
+      .setSize(760,fontSize + 4)
+      //.setHeight(fontSize + 4)
       .setFont(font)
       .setFocus(true)
-      .setColor(color(0,0,0));
+      .setColor(color(0,0,0))
+      .setColorForeground(0xffffffff)
+      .setColorBackground(0xffffffff)
+      .setColorActive(0xffffffff);
 }
 
 void draw() {
@@ -74,11 +77,14 @@ void makeNewLine() {
   
   ctrl.addTextfield("line" + str(numLines))
     .setPosition(10,yPos + 16)
-    //.setSize(760,560)
-    .setHeight(fontSize + 4)
+    .setSize(760,fontSize + 4)
+    //.setHeight(fontSize + 4)
     .setFont(font)
     .setFocus(true)
-    .setColor(color(0,0,0));
+    .setColor(color(0,0,0))
+    .setColorForeground(0xffffffff)
+    .setColorBackground(0xffffffff)
+    .setColorActive(0xffffffff);
 }
 
 void keyPressed() {
