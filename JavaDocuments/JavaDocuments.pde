@@ -8,7 +8,7 @@ int fontSize = 12;
 //boolean firstLine = true;
 //boolean secondLine = false;
 int numLines = 1;
-int yPos = 20;
+int yPos = 100;
 String fontStyle = "serif";
 
 void setup() {
