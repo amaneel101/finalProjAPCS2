@@ -7,9 +7,11 @@ String textInput;
 int fontSize = 12;
 //boolean firstLine = true;
 //boolean secondLine = false;
-int numLines = 1;
-int yPos = 20;
+//int numLines = 1;
+//int yPos = 20;
 String fontStyle = "serif";
+
+int numTextBoxes = 0;
 
 void setup() {
   size(800,600);
@@ -41,11 +43,15 @@ void setup() {
                     .addItem("yellow",3);
   customize(chooseColor);
   
-  PFont font = createFont(fontStyle,fontSize);
+  //PFont font = createFont(fontStyle,fontSize);
+  
+  ctrl.addButton("Text_Box")
+      .setPosition(650,200)
+      .setSize(80,40);
 }
 
 void draw() {
-  background(0);
+  background(255);
 }
 
 void customize(DropdownList ddl) {
@@ -54,6 +60,16 @@ void customize(DropdownList ddl) {
   ddl.setBarHeight(20);
   ddl.setColorBackground(color(60));
   ddl.setColorActive(color(255,128));
+}
+
+public void Text_Box() {
+  numTextBoxes++;
+  ctrl.addTextfield("box" + str(numTextBoxes))
+      .setPosition(300,300)
+      .setSize(90,50)
+      .setColorForeground(0xff000000)
+      .setColorBackground(0xff000000)
+      .setColorActive(0xff000000);
 }
 
 
