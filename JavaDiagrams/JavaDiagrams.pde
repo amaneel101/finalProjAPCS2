@@ -10,6 +10,14 @@ int fontSize = 12;
 int numLines = 1;
 int yPos = 20;
 String fontStyle = "serif";
+float bx = 400;
+float by = 300;
+int bs = 20;
+boolean bover = false;
+boolean locked = false;
+float bdifx = 0.0;
+float bdify = 0.0;
+
 
 void setup() {
   size(800,600);
@@ -46,6 +54,11 @@ void setup() {
 
 void draw() {
   background(0);
+  if (mouseX > bx-bs && mouseX < bx+bs && 
+      mouseY > by-bs && mouseY < by+bs) {
+    bover = true;  
+  }
+  rect(bx, by, bs, bs); //test with rectangle
 }
 
 void customize(DropdownList ddl) {
@@ -56,7 +69,26 @@ void customize(DropdownList ddl) {
   ddl.setColorActive(color(255,128));
 }
 
+void mousePressed(){
+  if(bover){
+    locked = true;
+  } else{
+    locked = false;
+  }
+  bdifx = mouseX - bx;
+  bdify = mouseY - by;
+}
 
+void mouseDragged(){
+  if(locked){
+    bx = mouseX - bdifx;
+    by = mouseY - bdify;
+  }
+}
+
+void mouseReleased(){
+  locked = false;    
+}
 // TODO:
 // buttons
 // lines/arrows (draggable)
