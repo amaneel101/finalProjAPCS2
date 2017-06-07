@@ -1,4 +1,5 @@
 import controlP5.*;
+import static javax.swing.JOptionPane.*;
 
 ControlP5 ctrl;
 DropdownList chooseFont, chooseSize, chooseColor;
@@ -55,6 +56,10 @@ void setup() {
   ctrl.addButton("Line")
       .setPosition(650,250)
       .setSize(80,40);
+      
+  ctrl.addButton("Save")
+      .setPosition(650,500)
+      .setSize(80,40);
 }
 
 void draw() {
@@ -103,6 +108,11 @@ void drawArrow(float x1, float y1, float x2, float y2) { //
   triangle(- a * 2 , - a, 0, 0, - a * 2, a);
   popMatrix();
   line(x1, y1, x2, y2);  
+}
+
+void Save() {
+  String filename = showInputDialog("Enter filename");
+  save(filename);
 }
 
 
