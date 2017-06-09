@@ -3,6 +3,9 @@ import static javax.swing.JOptionPane.*;
 
 ControlP5 ctrl;
 DropdownList chooseFont, chooseSize, chooseColor;
+ArrayList<Text_field> tf;
+ArrayList<Line> line;
+int ln = 0;
 
 String textInput;
 int fontSize = 12;
@@ -11,6 +14,8 @@ int fontSize = 12;
 //int numLines = 1;
 //int yPos = 20;
 String fontStyle = "serif";
+boolean bover = false;
+boolean locked = false;
 
 int numTextBoxes = 0;
 
@@ -20,7 +25,8 @@ int x1, y1, x2, y2;
 void setup() {
   size(800,600);
   ctrl = new ControlP5(this);
-  
+  line = new ArrayList<Line>();
+  tf = new ArrayList<Text_field>();
   chooseFont = ctrl.addDropdownList("Font")
                   .setPosition(10,5)
                   .addItem("serif",0)
@@ -65,7 +71,13 @@ void setup() {
 void draw() {
   background(255);
   
-  line(x1,y1,x2,y2);
+  //line(x1, y1, x2, y2);
+  /*for(Line a : line){
+    a.display();
+  }
+  for(Text_field a : tf){
+    a.display();
+  }*/
 }
 
 void customize(DropdownList ddl) {
@@ -77,16 +89,21 @@ void customize(DropdownList ddl) {
 }
 
 public void Text_Box() {
+  tf.add(new Text_field("box" + str(numTextBoxes)));
+  tf.get(numTextBoxes).display();
   numTextBoxes++;
-  ctrl.addTextfield("box" + str(numTextBoxes))
+  /*ctrl.addTextfield("box" + str(numTextBoxes))
       .setPosition(random(200,300),random(200,300))
       .setSize(90,50)
       .setColorForeground(0xff000000)
       .setColorBackground(0xff000000)
-      .setColorActive(0xff000000);
+      .setColorActive(0xff000000);*/
 }
 
 public void Line() {
+  line.add(new Line());
+  line.get(ln).display();
+  ln++;
   //int startX = random(200,300);
   //int startY = random(200,300);
   
@@ -115,6 +132,22 @@ void Save() {
   save(filename);
 }
 
+void mousePressed(){
+  if(bover){
+    locked = true;
+  }else{
+    locked = false;
+  }
+}
+
+void mouseDragged(){
+  if(locked){
+  }
+}
+
+void mouseReleased(){
+  locked = false;
+}
 
 // TODO:
 // buttons
