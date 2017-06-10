@@ -5,7 +5,7 @@ ControlP5 ctrl;
 DropdownList chooseFont, chooseSize, chooseColor;
 ArrayList<Text_field> tf;
 ArrayList<Line> line;
-int ln = 0;
+ArrayList<Arrow_line> arrow;
 
 String textInput;
 int fontSize = 12;
@@ -18,6 +18,8 @@ boolean bover = false;
 boolean locked = false;
 
 int numTextBoxes = 0;
+int ln = 0;
+int numArrow = 0;
 
 
 int x1, y1, x2, y2;
@@ -61,6 +63,10 @@ void setup() {
       
   ctrl.addButton("Line")
       .setPosition(650,250)
+      .setSize(80,40);
+      
+  ctrl.addButton("Arrow")
+      .setPosition(650,300)
       .setSize(80,40);
       
   ctrl.addButton("Save")
@@ -116,15 +122,10 @@ public void Line() {
   y2 = 400;
 }
 
-
-void drawArrow(float x1, float y1, float x2, float y2) { //
-  float a = dist(x1, y1, x2, y2) / 50;
-  pushMatrix();
-  translate(x2, y2);
-  rotate(atan2(y2 - y1, x2 - x1));
-  triangle(- a * 2 , - a, 0, 0, - a * 2, a);
-  popMatrix();
-  line(x1, y1, x2, y2);  
+public void Arrow() {
+  arrow.add(new Arrow_line());
+  arrow.get(numArrow).display();
+  numArrow++;
 }
 
 void Save() {
