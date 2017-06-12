@@ -53,10 +53,10 @@ class Text_field extends Component{
   }
   
   public boolean getLocked(){
-    super.getLocked();
+    return super.getLocked();
   }
   
   public boolean getOverComp(){
-    super.getOverComp();
+    return super.getOverComp();
   }
 }

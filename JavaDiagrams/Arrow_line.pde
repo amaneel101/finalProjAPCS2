@@ -66,10 +66,10 @@ class Arrow_line extends Line{
   }
   
   public boolean getLocked(){
-    super.getLocked();
+    return super.getLocked();
   }
   
   public boolean getOverComp(){
-    super.getOverComp();
+    return super.getOverComp();
   }
 }

@@ -1,13 +1,9 @@
 import controlP5.*;
 import static javax.swing.JOptionPane.*;
-//import java.util.HashMap;
 import java.util.List;
 
 ControlP5 ctrl;
 DropdownList chooseFont, chooseSize, chooseColor;
-//ArrayList<Text_field> tf;
-//ArrayList<Line> line;
-//ArrayList<Arrow_line> arrow;
 List<List> all = new ArrayList<List>(3);
 
 
@@ -15,8 +11,6 @@ List<Line> line = new ArrayList<Line>();
 List<Text_field> tf = new ArrayList<Text_field>();
 List<Arrow_line> arrow = new ArrayList<Arrow_line>();
 
-//HashMap<String, Object> all_objects;
-//ArrayList<Object> all_objects;
 
 String textInput;
 int fontSize = 12;
@@ -107,7 +101,7 @@ void draw() {
       if(component.getLocked() == false){
       }
       else{
-        component.changeOver = false;
+        component.overComp = false;
       }
     }
     component.display();
@@ -215,6 +209,7 @@ void mouseReleased(){
   for (List<Component> lists : all) for (Component component : lists) {
     component.changeLocked(false);
   }
+}
 
 // TODO:
 // buttons
