@@ -1,14 +1,30 @@
-class Arrow_line {
+class Arrow_line extends Line{
   float x1, y1, x2, y2;
+  
+  int xNow;
+  int yNow;
   
   Arrow_line() {
     x1 = 300;
     y1 = 300;
     x2 = 400;
     y2 = 400;
+    
+    xNow = 300;
+    yNow = 300;
    }
    
-  private void drawArrow(int x1, int y1, int x2, int y2) { // 
+   Arrow_line(int x, int y, int xx, int yy) {
+     x1 = x;
+     y1 = y;
+     x2 = xx;
+     y2 = yy;
+     
+     xNow = Math.round(x);
+     yNow = Math.round(y);
+   }
+   
+  private void drawArrow(float x1, float y1, float x2, float y2) { // 
     float a = dist(x1, y1, x2, y2) / 50;
     pushMatrix();
     translate(x2, y2);
@@ -19,6 +35,22 @@ class Arrow_line {
   }
   
   public void display() {
-    drawArrow(x1,y1,x2,y2);
+    drawArrow(xNow,yNow,xNow + 100,yNow + 100);
+  }
+  
+  public int getXVal() {
+    return xNow;
+  }
+  
+  public int getYVal() {
+    return yNow;
+  }
+  
+  public void changeXVal(int x) {
+    xNow = x;
+  }
+  
+  public void changeYVal(int y) {
+    yNow = y;
   }
 }

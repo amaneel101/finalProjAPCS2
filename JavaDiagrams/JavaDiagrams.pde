@@ -1,11 +1,22 @@
 import controlP5.*;
 import static javax.swing.JOptionPane.*;
+//import java.util.HashMap;
+import java.util.List;
 
 ControlP5 ctrl;
 DropdownList chooseFont, chooseSize, chooseColor;
-ArrayList<Text_field> tf;
-ArrayList<Line> line;
-ArrayList<Arrow_line> arrow;
+//ArrayList<Text_field> tf;
+//ArrayList<Line> line;
+//ArrayList<Arrow_line> arrow;
+List<List> all = new ArrayList<List>(3);
+
+
+List<Line> line = new ArrayList<Line>();
+List<Text_field> tf = new ArrayList<Text_field>();
+List<Arrow_line> arrow = new ArrayList<Arrow_line>();
+
+//HashMap<String, Object> all_objects;
+//ArrayList<Object> all_objects;
 
 String textInput;
 int fontSize = 12;
@@ -14,8 +25,8 @@ int fontSize = 12;
 //int numLines = 1;
 //int yPos = 20;
 String fontStyle = "serif";
-boolean bover = false;
-boolean locked = false;
+//boolean bover = false;
+//boolean locked = false;
 
 int numTextBoxes = 0;
 int ln = 0;
@@ -27,8 +38,23 @@ int x1, y1, x2, y2;
 void setup() {
   size(800,600);
   ctrl = new ControlP5(this);
-  line = new ArrayList<Line>();
-  tf = new ArrayList<Text_field>();
+  //line = new ArrayList<Line>();
+  //tf = new ArrayList<Text_field>();
+  //arrow = new ArrayList<Arrow_line>();
+  //line.add(new Line(0,0,0,0));
+  //tf.add(new Text_field("000"));
+  //arrow.add(new Arrow_line(0,0,0,0));
+  
+  //noLoop();
+  
+  all.add(tf);
+  all.add(line);
+  all.add(arrow);
+  
+  tf.add(new Text_field("000",1000));
+  line.add(new Line(1000,1000,1000,1000));
+  arrow.add(new Arrow_line(1000,1000,1000,1000));
+  
   chooseFont = ctrl.addDropdownList("Font")
                   .setPosition(10,5)
                   .addItem("serif",0)
@@ -77,6 +103,9 @@ void setup() {
 void draw() {
   background(255);
   
+  for (List<Component> lists : all) for (Component component : lists) {
+    component.display();
+  }
   //line(x1, y1, x2, y2);
   /*for(Line a : line){
     a.display();
@@ -134,20 +163,45 @@ void Save() {
 }
 
 void mousePressed(){
-  if(bover){
-    locked = true;
-  }else{
-    locked = false;
-  }
+  //if(bover){
+  //  locked = true;
+  //}else{
+  //  locked = false;
+  //}
+  //
+  // cycle through
+  //all_objects = new HashMap<String, Object>();
+  //all_objects = new ArrayList<Object>();
+  //all_objects.add(tf);
+  //all_objects.add(line);
+  //all_objects.add(arrow);
+  
+  //for (int i = 0; i < all_objects.size(); i++) {
+  //  for (int j = 0; j < all_objects.get(i).size(); j++) {
+  //      if (all_objects.get(i).get(j)
+  //  }
+  //}
+  
+  //for (List<Component> lists : all) for (Component component : lists) {
+  //  if (abs(component.getXVal() - mouseX) <= 3 && abs(component.getYVal() - mouseY) <= 3) {
+      
+  //  }
+  //}
 }
 
 void mouseDragged(){
-  if(locked){
+  //if(locked){
+  //}
+  for (List<Component> lists : all) for (Component component : lists) {
+    if (abs(component.getXVal() - mouseX) <= 10 && abs(component.getYVal() - mouseY) <= 10) {
+      component.changeXVal(mouseX);
+      component.changeYVal(mouseY);
+    }
   }
 }
 
 void mouseReleased(){
-  locked = false;
+  //locked = false;
 }
 
 // TODO:
