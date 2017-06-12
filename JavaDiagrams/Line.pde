@@ -4,6 +4,8 @@ class Line extends Component{
   int xNow;
   int yNow;
   
+  boolean overComp = false;
+  boolean locked = false;
   
   Line(){
     x1 = 300;
@@ -43,4 +45,20 @@ class Line extends Component{
   public void changeYVal(int y) {
     yNow = y;
   }
+  
+  public void changeOver(boolean bool){
+    super.changeOver(bool);
+  }
+  public void changeLocked(boolean bool){
+    super.changeLocked(bool);
+  }
+  
+  public boolean getLocked(){
+    super.getLocked();
+  }
+  
+  public boolean getOverComp(){
+    super.getOverComp();
+  }
+  
 }

@@ -2,7 +2,8 @@ class Text_field extends Component{
   String b;
   int xNow;
   int yNow;
-  
+  boolean overComp = false;
+  boolean locked = false;
   
   Text_field(String b){
     this.b = b;
@@ -43,4 +44,19 @@ class Text_field extends Component{
   public void changeYVal(int y) {
     yNow = y;
   }
- }
+  
+  public void changeOver(boolean bool){
+    super.changeOver(bool);
+  }
+  public void changeLocked(boolean bool){
+    super.changeLocked(bool);
+  }
+  
+  public boolean getLocked(){
+    super.getLocked();
+  }
+  
+  public boolean getOverComp(){
+    super.getOverComp();
+  }
+}

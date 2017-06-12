@@ -4,6 +4,9 @@ class Arrow_line extends Line{
   int xNow;
   int yNow;
   
+  boolean overComp = false;
+  boolean locked = false;
+  
   Arrow_line() {
     x1 = 300;
     y1 = 300;
@@ -52,5 +55,21 @@ class Arrow_line extends Line{
   
   public void changeYVal(int y) {
     yNow = y;
+  }
+  
+  public void changeOver(boolean bool){
+    super.changeOver(bool);
+  }
+  
+  public void changeLocked(boolean bool){
+    super.changeLocked(bool);
+  }
+  
+  public boolean getLocked(){
+    super.getLocked();
+  }
+  
+  public boolean getOverComp(){
+    super.getOverComp();
   }
 }

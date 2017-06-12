@@ -25,8 +25,6 @@ int fontSize = 12;
 //int numLines = 1;
 //int yPos = 20;
 String fontStyle = "serif";
-//boolean bover = false;
-//boolean locked = false;
 
 int numTextBoxes = 0;
 int ln = 0;
@@ -51,9 +49,9 @@ void setup() {
   all.add(line);
   all.add(arrow);
   
-  tf.add(new Text_field("000",1000));
+  /*tf.add(new Text_field("000",1000));
   line.add(new Line(1000,1000,1000,1000));
-  arrow.add(new Arrow_line(1000,1000,1000,1000));
+  arrow.add(new Arrow_line(1000,1000,1000,1000));*/
   
   chooseFont = ctrl.addDropdownList("Font")
                   .setPosition(10,5)
@@ -104,6 +102,14 @@ void draw() {
   background(255);
   
   for (List<Component> lists : all) for (Component component : lists) {
+    if (abs(component.getXVal() - mouseX) <= 10 && abs(component.getYVal() - mouseY) <= 10) {
+      component.changeOver(true); 
+      if(component.getLocked() == false){
+      }
+      else{
+        component.changeOver = false;
+      }
+    }
     component.display();
   }
   //line(x1, y1, x2, y2);
@@ -163,8 +169,14 @@ void Save() {
 }
 
 void mousePressed(){
-  //if(bover){
-  //  locked = true;
+  for (List<Component> lists : all) for (Component component : lists) {
+    if(component.getOverComp() == true){
+      component.changeOver(true);
+    } else{
+      component.changeOver(false);
+    }
+  }
+  
   //}else{
   //  locked = false;
   //}
@@ -190,19 +202,19 @@ void mousePressed(){
 }
 
 void mouseDragged(){
-  //if(locked){
-  //}
   for (List<Component> lists : all) for (Component component : lists) {
-    if (abs(component.getXVal() - mouseX) <= 10 && abs(component.getYVal() - mouseY) <= 10) {
+    if(component.getLocked() == true){
       component.changeXVal(mouseX);
       component.changeYVal(mouseY);
+      component.display();
     }
   }
 }
 
 void mouseReleased(){
-  //locked = false;
-}
+  for (List<Component> lists : all) for (Component component : lists) {
+    component.changeLocked(false);
+  }
 
 // TODO:
 // buttons
