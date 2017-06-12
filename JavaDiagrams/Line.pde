@@ -5,15 +5,16 @@ class Line extends Component{
   
   int xNow;
   int yNow;
+  //int yChange = 0;
   
   boolean overComp = false;
   boolean locked = false;
-  
+ 
   Line(){
     x1 = 300;
     y1 = 300;
     x2 = 400;
-    y2 = 400;
+    y2 = 300;
     
     xNow = 300;
     yNow = 300;
@@ -29,7 +30,7 @@ class Line extends Component{
     yNow = y;
   }
   public void display(){
-    line(xNow, yNow, xNow + 100, yNow + 100);
+    line(xNow, yNow, xNow + 100, yNow);
   }
   
   public int getXVal() {
@@ -62,6 +63,14 @@ class Line extends Component{
   public boolean getOverComp(){
     return super.getOverComp();
   }
+  
+  //public void setYChange(int y) {
+  // yChange = y;
+  //}
+  
+  //void MousePressed() {
+  //  yChange = 270;
+  //}
   
   //public void display(Textfield field) {
   //  throw new UnsupportedOperationException();

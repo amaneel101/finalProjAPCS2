@@ -6,6 +6,8 @@ class Arrow_line extends Line{
   int xNow;
   int yNow;
   
+  //int yChange = 0;
+  
   boolean overComp = false;
   boolean locked = false;
   
@@ -13,7 +15,7 @@ class Arrow_line extends Line{
     x1 = 300;
     y1 = 300;
     x2 = 400;
-    y2 = 400;
+    y2 = 300;
     
     xNow = 300;
     yNow = 300;
@@ -40,7 +42,7 @@ class Arrow_line extends Line{
   }
   
   public void display() {
-    drawArrow(xNow,yNow,xNow + 100,yNow + 100);
+    drawArrow(xNow,yNow,xNow + 100,yNow);
   }
   
   public int getXVal() {
@@ -74,6 +76,14 @@ class Arrow_line extends Line{
   public boolean getOverComp(){
     return super.getOverComp();
   }
+  
+  //public void setYChange(int y) {
+  //  yChange = y;
+  //}
+  
+  //void MousePressed() {
+  //  yChange = 270;
+  //}
   
   //public void display (Textfield field) {
   //  throw new UnsupportedOperationException();

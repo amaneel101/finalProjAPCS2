@@ -18,12 +18,16 @@ int selectedItem;
 
 
 String textInput;
-int fontSize = 12;
-String fontStyle = "Serif";
+int fontSize;
+String fontStyle;
+PFont font;
+int boxWidth = 90;
 
 int numTextBoxes = 0;
 int ln = 0;
 int numArrow = 0;
+
+int drawTest =0;
 
 
 int x1, y1, x2, y2;
@@ -40,20 +44,20 @@ void setup() {
   
   chooseFont = ctrl.addDropdownList("Font")
                   .setPosition(10,5)
-                  .addItem("serif",0)
-                  .addItem("sans-serif",1)
-                  .addItem("monospace",2)
-                  .addItem("fantasy",3)
-                  .addItem("cursive",4);
+                  .addItem("serif [0]",0)
+                  .addItem("sans-serif [1]",1)
+                  .addItem("monospace [2]",2)
+                  .addItem("fantasy [3]",3)
+                  .addItem("cursive [4]",4);
   customize(chooseFont);
   
   chooseSize = ctrl.addDropdownList("Size")
                    .setPosition(110,5)
-                   .addItem("2",0)
-                   .addItem("6",1)
-                   .addItem("12",2)
-                   .addItem("36",3)
-                   .addItem("72",4);
+                   .addItem("2 [5]",5)
+                   .addItem("6 [6]",6)
+                   .addItem("12 [7]",7)
+                   .addItem("36 [8]",8)
+                   .addItem("72 [9]",9);
   customize(chooseSize);
   
   chooseColor = ctrl.addDropdownList("Color")
@@ -87,17 +91,26 @@ void setup() {
   ctrl.addButton("Open")
       .setPosition(650,550)
       .setSize(80,40);
+      
+      fontStyle = "Serif";
+      fontSize = 12;
 }
 
 void draw() {
   background(255);
   
-  PFont font = createFont(fontStyle,fontSize);
+  System.out.println(fontStyle + drawTest);
+  drawTest++;
+  font = createFont(fontStyle,fontSize);
   textFont(font);
   
   if (tf.size() > 0) {
+    //int i = 0;
     for (Text_field hello : tf) {
+      //System.out.println("hi" + i);
       hello.setFont(fontStyle,fontSize);
+      hello.setWidth(boxWidth);
+      //i++;
     }
   }
   
@@ -121,6 +134,7 @@ void draw() {
   for(Text_field a : tf){
     a.display();
   }*/
+  
 }
 
 void customize(DropdownList ddl) {
@@ -147,7 +161,7 @@ public void Line() {
   x1 = 300;
   y1 = 300;
   x2 = 400;
-  y2 = 400;
+  y2 = 300;
 }
 
 public void Arrow() {
@@ -184,87 +198,128 @@ void openFile() {
   set(0,0,img);
 }
 
-void controlEvent(ControlEvent theEvent) {
-  if (theEvent.isGroup()) {
-    selectedGroup = theEvent.getGroup().getName();
-    selectedItem = int(theEvent.getGroup().getValue());
-    
-    if (selectedGroup.equals("Font")) {
-      if (selectedItem == 0) {
-        // serif
-        fontStyle = "Serif";
-      }
-      else if (selectedItem == 1) {
-        // sans-serif
-        fontStyle = "SansSerif";
-      }
-      else if (selectedItem == 2) {
-        // monospace
-        fontStyle = "Monospaced";
-      }
-      else if (selectedItem == 3) {
-        // fantasy
-        fontStyle = "Fantasy";
-      }
-      else if (selectedItem == 4) {
-        // cursive
-        fontStyle = "Cursive";
-      }
-      else {
-        // serif
-        fontStyle = "Serif";
-      }
-    }
-    
-    if (selectedGroup.equals("Size")) {
-      if (selectedItem == 0) {
-        // 2
-        fontSize = 2;
-      }
-      else if (selectedItem == 1) {
-        // 6
-        fontSize = 6;
-      }
-      else if (selectedItem == 2) {
-        // 12
-        fontSize = 12;
-      }
-      else if (selectedItem == 3) {
-        // 36
-        fontSize = 36;
-      }
-      else if (selectedItem == 4) {
-        // 72
-        fontSize = 72;
-      }
-      else {
-        // 12
-        fontSize = 12;
-      }
-    }
-    
-    if (selectedGroup.equals("Color")) {
-      if (selectedItem == 0) {
-        // black
-      }
-      else if (selectedItem == 1) {
-        // rred
-      }
-      else if (selectedItem == 2) {
-        // blue
-      }
-      else if (selectedItem == 3) {
-        // yellow
-      }
-      else {
-        // black
-      }
-    }
+void keyPressed() {
+  if (key == '0') {
+    fontStyle = "Serif";
+  }
+  if (key == '1') {
+    fontStyle = "SansSerif";
+  }
+  if (key == '2') {
+    fontStyle = "Monospaced";
+  }
+  if (key == '3') {
+    fontStyle = "Fantasy";
+  }
+  if (key == '4') {
+    fontStyle = "Cursive";
+  }
+  if (key == '5') {
+    fontSize = 2;
+  }
+  if (key == '6') {
+    fontSize = 6;
+    boxWidth += 5;
+  }
+  if (key == '7') {
+    fontSize = 12;
+    boxWidth += 10;
+  }
+  if (key == '8') {
+    fontSize = 36;
+    boxWidth += 15;
+  }
+  if (key == '9') {
+    fontSize = 72;
+    boxWidth += 20;
   }
 }
 
+
+//void controlEvent(ControlEvent theEvent) {
+//  if (theEvent.isGroup()) {
+//    selectedGroup = theEvent.getGroup().getName();
+//    selectedItem = int(theEvent.getGroup().getValue());
+    
+//    if (selectedGroup.equals("Font")) {
+//      if (selectedItem == 0) {
+//        // serif
+//        fontStyle = "Serif";
+//      }
+//      else if (selectedItem == 1) {
+//        // sans-serif
+//        fontStyle = "SansSerif";
+//      }
+//      else if (selectedItem == 2) {
+//        // monospace
+//        fontStyle = "Monospaced";
+//      }
+//      else if (selectedItem == 3) {
+//        // fantasy
+//        fontStyle = "Fantasy";
+//      }
+//      else if (selectedItem == 4) {
+//        // cursive
+//        fontStyle = "Cursive";
+//      }
+//      else {
+//        // serif
+//        fontStyle = "Serif";
+//      }
+//    }
+    
+//    if (selectedGroup.equals("Size")) {
+//      if (selectedItem == 0) {
+//        // 2
+//        fontSize = 2;
+//      }
+//      else if (selectedItem == 1) {
+//        // 6
+//        fontSize = 6;
+//      }
+//      else if (selectedItem == 2) {
+//        // 12
+//        fontSize = 12;
+//      }
+//      else if (selectedItem == 3) {
+//        // 36
+//        fontSize = 36;
+//      }
+//      else if (selectedItem == 4) {
+//        // 72
+//        fontSize = 72;
+//      }
+//      else {
+//        // 12
+//        fontSize = 12;
+//      }
+//    }
+    
+//    if (selectedGroup.equals("Color")) {
+//      if (selectedItem == 0) {
+//        // black
+//      }
+//      else if (selectedItem == 1) {
+//        // rred
+//      }
+//      else if (selectedItem == 2) {
+//        // blue
+//      }
+//      else if (selectedItem == 3) {
+//        // yellow
+//      }
+//      else {
+//        // black
+//      }
+//    }
+//  }
+//}
+
 void mousePressed(){
   for (List<Component> lists : all) for (Component component : lists) {
+    //if (lists == line || lists == arrow) {
+      
+    //}
     if(component.getOverComp() == true){
       component.changeOver(true);
     } else{

@@ -7,21 +7,20 @@ class Text_field extends Component {
   boolean overComp = false;
   boolean locked = false;
   Textfield field;
+  int boxWidth;
 
 
-  String fontStyle = "Serif";
+  String fontStyle = "SansSerif";
   int fontSize = 12;
   
-  PFont font = createFont(fontStyle, fontSize);
 
   Text_field(String b) {
     this.b = b;
 
-    //xNow = random(200,300);
-    //yNow = random(200,300);
-
     xNow = 300;
     yNow = 300;
+    
+    PFont font = createFont(fontStyle, fontSize);
 
     //ctrl.addTextfield("tbox" + str(numTextBoxes))
     ctrl.addTextfield(b)
@@ -37,6 +36,8 @@ class Text_field extends Component {
     b = str;
     xNow = num;
     yNow = num;
+    
+    PFont font = createFont(fontStyle, fontSize);
 
     //ctrl.addTextfield("tbox" + str(numTextBoxes))
     ctrl.addTextfield(b)
@@ -48,30 +49,14 @@ class Text_field extends Component {
       .setFont(font);
   }
   public void display() {
-    //throw new UnsupportedOperationException();
-    //PFont font = createFont(fontStyle, fontSize);
-    ////String name = b;
-    ////System.out.println(b);
 
-    font = createFont(fontStyle, fontSize);
+    PFont font = createFont(fontStyle, fontSize);
 
     ctrl.get(Textfield.class,b).setPosition(xNow, yNow)
-      //.setSize(90,50)
-      //.setColorForeground(0xff000000)
-      //.setColorBackground(0xff000000)
-      //.setColorActive(0xff000000)
+    .setWidth(boxWidth)
       .setFont(font);
   }
 
-  //public void display(Textfield field) {
-  //         field.setPosition(xNow, yNow)
-  //             .setSize(90,50)
-  //             .setColorForeground(0xff000000)
-  //             .setColorBackground(0xff000000)
-  //             .setColorActive(0xff000000)
-  //             .setFont(font);
-
-//}
 
 public int getXVal() {
   return xNow;
@@ -107,6 +92,9 @@ public boolean getOverComp() {
 public void setFont(String style, int size) {
   fontStyle = style;
   fontSize = size;
+}
+public void setWidth(int bwidth) {
+  boxWidth = bwidth;
 }
 
 }
