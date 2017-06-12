@@ -1,3 +1,5 @@
+//import java.lang.UnsupportedOperationException;
+
 class Line extends Component{
   int x1, y1, x2, y2;
   
@@ -60,5 +62,9 @@ class Line extends Component{
   public boolean getOverComp(){
     return super.getOverComp();
   }
+  
+  //public void display(Textfield field) {
+  //  throw new UnsupportedOperationException();
+  //}
   
 }

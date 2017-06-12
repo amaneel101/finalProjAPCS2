@@ -1,3 +1,5 @@
+//import java.lang.UnsupportedOperationException;
+
 class Arrow_line extends Line{
   float x1, y1, x2, y2;
   
@@ -72,4 +74,8 @@ class Arrow_line extends Line{
   public boolean getOverComp(){
     return super.getOverComp();
   }
+  
+  //public void display (Textfield field) {
+  //  throw new UnsupportedOperationException();
+  //}
 }

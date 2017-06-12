@@ -13,10 +13,13 @@ List<Arrow_line> arrow = new ArrayList<Arrow_line>();
 
 String fileName;
 
+String selectedGroup = "Font";
+int selectedItem;
+
 
 String textInput;
 int fontSize = 12;
-String fontStyle = "serif";
+String fontStyle = "Serif";
 
 int numTextBoxes = 0;
 int ln = 0;
@@ -62,6 +65,8 @@ void setup() {
   customize(chooseColor);
   
   //PFont font = createFont(fontStyle,fontSize);
+  //textFont(font);
+  //textAlign(CENTER, CENTER);
   
   ctrl.addButton("Text_Box")
       .setPosition(650,200)
@@ -86,6 +91,15 @@ void setup() {
 
 void draw() {
   background(255);
+  
+  PFont font = createFont(fontStyle,fontSize);
+  textFont(font);
+  
+  if (tf.size() > 0) {
+    for (Text_field hello : tf) {
+      hello.setFont(fontStyle,fontSize);
+    }
+  }
   
   for (List<Component> lists : all) for (Component component : lists) {
     if (abs(component.getXVal() - mouseX) <= 10 && abs(component.getYVal() - mouseY) <= 10) {
@@ -119,7 +133,9 @@ void customize(DropdownList ddl) {
 
 public void Text_Box() {
   tf.add(new Text_field("box" + str(numTextBoxes)));
+  //System.out.println("box" + str(numTextBoxes));
   tf.get(numTextBoxes).display();
+  //display(tf.get(numTextBoxes));
   numTextBoxes++;
 }
 
@@ -166,6 +182,85 @@ void openFile() {
   noLoop();
   PImage img = loadImage(fileName);
   set(0,0,img);
+}
+
+void controlEvent(ControlEvent theEvent) {
+  if (theEvent.isGroup()) {
+    selectedGroup = theEvent.getGroup().getName();
+    selectedItem = int(theEvent.getGroup().getValue());
+    
+    if (selectedGroup.equals("Font")) {
+      if (selectedItem == 0) {
+        // serif
+        fontStyle = "Serif";
+      }
+      else if (selectedItem == 1) {
+        // sans-serif
+        fontStyle = "SansSerif";
+      }
+      else if (selectedItem == 2) {
+        // monospace
+        fontStyle = "Monospaced";
+      }
+      else if (selectedItem == 3) {
+        // fantasy
+        fontStyle = "Fantasy";
+      }
+      else if (selectedItem == 4) {
+        // cursive
+        fontStyle = "Cursive";
+      }
+      else {
+        // serif
+        fontStyle = "Serif";
+      }
+    }
+    
+    if (selectedGroup.equals("Size")) {
+      if (selectedItem == 0) {
+        // 2
+        fontSize = 2;
+      }
+      else if (selectedItem == 1) {
+        // 6
+        fontSize = 6;
+      }
+      else if (selectedItem == 2) {
+        // 12
+        fontSize = 12;
+      }
+      else if (selectedItem == 3) {
+        // 36
+        fontSize = 36;
+      }
+      else if (selectedItem == 4) {
+        // 72
+        fontSize = 72;
+      }
+      else {
+        // 12
+        fontSize = 12;
+      }
+    }
+    
+    if (selectedGroup.equals("Color")) {
+      if (selectedItem == 0) {
+        // black
+      }
+      else if (selectedItem == 1) {
+        // rred
+      }
+      else if (selectedItem == 2) {
+        // blue
+      }
+      else if (selectedItem == 3) {
+        // yellow
+      }
+      else {
+        // black
+      }
+    }
+  }
 }
 
 void mousePressed(){
